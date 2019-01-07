@@ -4,4 +4,4 @@ This is a repository for learning git step by step.
 Git has a mutable index called stage.
 Git tracks changes of files.
 Creating a new branch is quick and simple.
-Learn git stash.
+Learn git stash in dev.
