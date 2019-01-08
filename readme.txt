@@ -5,3 +5,4 @@ Git has a mutable index called stage.
 Git tracks changes of files.
 Creating a new branch is quick and simple.
 Learn git stash in dev.
+Dev branch updated 1/9/2019.
