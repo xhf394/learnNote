@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Linked List</title>
+</head>
+<body>
+	
+
+<script>
+	function LinkedList() {
+		this.head = null;
+		this.tail = null;
+	}
+
+	function Node(value, next, prev) {
+		this.value = value;
+		this.next = next;
+		this.prev = prev;
+	}
+
+	let test = new LinkedList();
+	let testNode1 = new Node(100, 'testNode2', null);
+
+	console.log(test);
+	console.log(testNode1);
+
+	/*add a head into LinkedList*/
+	/* three things: 
+	1. define a new node, pass value to it;
+	2. repoint new head
+	3. repoint new tail
+	make sure every node has correct value, head and tail info. 
+	So when add a head node, needs to take care old head (prev value)
+	*/
+    LinkedList.prototype.addToHead = function (value) {
+    	var newNode = new Node(value, this.head, null);
+    	if(this.head) this.head.prev = newNode; 
+    	else this.tail = newNode;
+    	this.head = newNode;
+    } 
+
+    // var ll = new LinkedList();
+    // ll.addToHead(100);
+    // console.log(ll);
+    // ll.addToHead(200);
+    // console.log(ll);
+    // ll.addToHead(300);
+    // console.log(ll);
+
+    LinkedList.prototype.addToTail = function (value) {
+        var newNode = new Node(value, null, this.tail);
+    	if(this.tail) this.tail.next = newNode;
+    	else this.head = newNode;
+    	this.tail = newNode;
+    }
+
+    /**
+     * removeHead() returns a value of the head node of Linked List
+       It can be used in future search
+     * @class  LinkedList
+     * @return {value} the value of the removed head node.
+     */
+    LinkedList.prototype.removeHead = function () {
+        if(!this.head) {
+        	return null;
+        }
+        var val = this.head.value;
+        this.head = this.head.next;
+        if(this.head) {
+        	this.head.prev = null;
+        }
+        else {
+        	this.tail = null;
+        }
+        return val;
+    }
+
+    LinkedList.prototype.removeTail = function () {
+    	if(!this.tail) {
+    		return null;
+    	}
+    	//store value of tail node;
+    	var val = this.tail.value;
+    	//define new tail;
+    	this.tail = this.tail.prev;
+    	//check if the tail of Linked List is true or null;
+    	if(this.tail) {
+    	    //if true, repoint it's next value;
+    	    this.tail.next = null;
+        }
+    	//if false, give "null" to tail node value;
+    	else {
+    		this.head = null;
+    	}
+    	//return tail's value;
+    	return val;
+    }
+    
+    let ll = new LinkedList();
+
+    ll.addToHead('One');
+    ll.addToHead('Two');
+    ll.addToHead('Three');
+    console.log(ll.removeTail());
+    
+    LinkedList.prototype.search = function(searchValue) {
+    	var currentNode = this.head;
+    	while(currentNode) {
+            if(currentNode.value === searchValue) {
+            	return currentNode.value;
+            }
+            currentNode = currentNode.next;  
+    	} 
+    	return null;
+    }
+
+    LinkedList.prototype.indexOf = function (value) {
+    	var currentNode = this.head;
+    	var counter = 0;
+    	var array = [];
+    	while(currentNode) {
+    		if(currentNode.value === value) {
+    		    array.push(counter);
+    		}
+    		currentNode = currentNode.next;
+    		counter++;
+    	}
+        return array;
+    }
+
+    let llIndex = new LinkedList();
+    llIndex.addToHead(8);
+    llIndex.addToHead(3);
+    llIndex.addToHead(5);
+    llIndex.addToHead(3);
+
+    console.log(llIndex);
+    console.log(llIndex.indexOf(1));
+
+
+    let llRemoveMiddle = new LinkedList();
+    llRemoveMiddle.addToHead('David');
+    llRemoveMiddle.addToHead('George');
+    llRemoveMiddle.addToHead('Sandy');
+    llRemoveMiddle.addToHead('Pete');
+
+    console.log(llRemoveMiddle);
+
+    LinkedList.prototype.removeValue = function(removeValue) {
+    	let currentNode = this.head;
+    	while(currentNode) {
+    		if(currentNode.value === removeValue) {
+    			if(currentNode.prev) {
+    				currentNode.prev.next = currentNode.next;
+    				currentNode.next.prev = currentNode.prev;
+    			}
+    			else {
+    				this.head = currentNode.next;
+    				currentNode.next.prev = null;
+    			}
+
+    			return llRemoveMiddle;
+    		}
+    		currentNode = currentNode.next;
+    	} 
+    };
+
+    console.log(llRemoveMiddle.removeValue('Sandy'));
+
+
+</script>	
+</body>
+</html>
