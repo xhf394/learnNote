@@ -133,3 +133,24 @@ LinkedList.prototype.removeTail = function () {
 
 ## Binary Search Trees
 
+### Recursion
+
+binary search 的思想基于递归的方法。
+
+递归函数的使用：
+
+```javascript
+function factorial(num) {
+    //base case
+    if(num === 1) {
+        return num;
+    }
+    //recursive part
+    else {
+        return num * factorial(num - 1);
+    }
+}
+```
+
+
+

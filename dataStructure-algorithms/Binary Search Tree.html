@@ -5,6 +5,55 @@
 	<title>Binary Search Tree</title>
 </head>
 <body>
-	
+	<script>
+		/*Create Binary Search Tree (BST) constructor
+		* @initial constructor
+		* @param number  
+		**/
+		function BST(value) {
+			this.value = value;
+			this.left = null;
+			this.right = null;
+		}
+
+		/**
+		* insert() add a value into binary search tree
+		* @class BST
+		* @param number 
+		* @use recursion to compare with base value,
+		    if left or right place already occupied,
+		    continue going down until put it in the right place in line. 
+		* @return {value} as new BST(value);
+		*/
+		BST.prototype.insert = function(value) {
+			//compare with base value
+			if (value <= this.value) {
+                //check if left value occupied 
+                if(!this.left) {
+                	//not occupied
+                	return this.left = new BST(value);
+                }
+                else {
+                	//recursion
+                    return this.left.insert(value);
+                }
+			}
+			else if (value < this.value) {
+                //check if right value occupied
+                if(!this.right) {
+                	//not occupied
+                    return this.right = new BST(value); 
+                }
+                else {
+                	//occupied recursion
+                	return this.right.insert();
+                }
+			} 
+		}
+    
+    let bst01 = new BST(50);
+    console.log(bst01);
+
+	</script>
 </body>
 </html>
