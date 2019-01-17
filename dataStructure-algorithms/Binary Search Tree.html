@@ -38,7 +38,7 @@
                     return this.left.insert(value);
                 }
 			}
-			else if (value < this.value) {
+			else if (value > this.value) {
                 //check if right value occupied
                 if(!this.right) {
                 	//not occupied
@@ -46,12 +46,25 @@
                 }
                 else {
                 	//occupied recursion
-                	return this.right.insert();
+                	return this.right.insert(value);
                 }
 			} 
 		}
     
     let bst01 = new BST(50);
+
+    console.log(bst01);
+
+    bst01.insert(30);
+    console.log(bst01);
+    bst01.insert(40);
+    bst01.insert(70);
+    bst01.insert(80);
+    bst01.insert(15);
+    bst01.insert(103);
+    bst01.insert(44);
+    bst01.insert(67);
+    bst01.insert(48);
     console.log(bst01);
 
 	</script>
