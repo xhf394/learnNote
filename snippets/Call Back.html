@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Call Back</title>
+</head>
+<body>
+	<script>
+	/* An example with no callback*/
+    let users = ['Sam', 'Ellie', 'Andy'];
+
+    /**
+     * addUser() add new user into exsited list after 200ms;
+     * @params 'string' name of new user;
+     * @return {array} user list with new user;
+     */
+    function addUser(username) {
+        setTimeout(function() {
+            users.push(username);
+        }, 200);
+    }
+
+    /**
+     * getUsers() get current user list after 100ms;
+     * @params no params;
+     * @return {array} current user list
+     */
+    function getUsers() {
+        setTimeout(function() {
+            console.log(users);
+        }, 100); 
+    }
+
+    //First add user to database;
+    //addUser('Jakie');
+
+    //Second get updated list of users;
+    //getUsers();
+    
+
+    //simulates situations that getUsers may faster than addUsers due to network speed or other conditions;
+    //-> ['Sam',, 'Ellie', 'Andy']   //still show old list before updating.
+
+    /*callback to resolve this potential issue*/
+    /**
+     * addUser2() add new user and then trigger callback function after 200ms;
+     * @params1 'string' name of new user;
+     * @params2 'function' a function will be triggered after updating user list;
+     * @return {array} updating user list and then trigger callback function;
+     */
+    function addUser2(username, callback) {
+        setTimeout(function() {
+            users.push(username);
+            callback();
+        }, 200);
+    } 
+    
+    //First add user to database and then execute getUsers after user has been added.
+    addUser2('Teddy', getUsers);
+
+
+
+
+
+	</script>
+</body>
+</html>
