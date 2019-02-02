@@ -66,6 +66,43 @@
     bst01.insert(67);
     bst01.insert(48);
     console.log(bst01);
+    console.log(bst01.left.right.right.right);
+
+    /**
+    *@class BST
+    *@params value(number)
+    *@return {booleam} contains: true; not: false
+    */
+    BST.prototype.contains = function(value) {
+    	//check if equal to current node value
+    	if(value === this.value) {
+    		return true;
+    	}
+    	//else check with two options
+    	if(value < this.value) {
+        	//check if left node value exists;
+        	if(!this.left) {
+        		return false;
+        	}
+        	//if exists, recursion to continue search
+        	else {
+        		return this.left.contains(value);
+        	}
+    	}
+    	if(value > this.value) {
+        	//check if right node value exists;
+    		if(!this.right) {
+    			return false;
+    		}
+        	//if exists, recursion to search
+        	else {
+        		return this.right.contains(value);
+        	}
+    	}
+    }
+
+    //testing contains()
+    console.log(bst01.contains(103));
 
 	</script>
 </body>
