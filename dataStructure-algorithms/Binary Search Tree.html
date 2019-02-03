@@ -104,6 +104,55 @@
     //testing contains()
     console.log(bst01.contains(103));
 
+    /**
+    * @depthFirstTraversal()
+    * @class BST
+    * @
+    */
+    BST.prototype.depthFirstTraversal = function(iteratorFunc, order) {
+    	//get parent node in "pre-order" order;
+    	if(order === "pre-order") iteratorFunc(this.value);
+    	//test if left value exists
+    	if(this.left) this.left.depthFirstTraversal(iteratorFunc, order);
+    	//get parent node in "in-order" order
+    	if(order === 'in-order') iteratorFunc(this.value);
+    	//continue track all the right value;
+    	if(this.right) this.right.depthFirstTraversal(iteratorFunc, order);  
+    	//get left & right node before parent node;
+    	if(order === "post-order") iteratorFunc(this.value);
+    }
+
+    //test depthFirstTraversal()
+    //pass a log function to depthFirstTravsal
+    function log(value) {
+    	console.log(value);
+    }
+
+    //run it
+    bst01.depthFirstTraversal(log, 'post-order');
+
+    //breadthFirstTraversal()
+    BST.prototype.breadthFirstTraversal = function(iteratorFunc) {
+    	//store current level node;
+    	let queue = [this];
+    	//loop binary search tree untill go through all nodes;
+    	while(queue.length) {
+    		//delete first node from queue and store it for tracking its children node;
+    		let treenode = queue.shift();
+    		//iterate treenode
+    		iteratorFunc(treenode);
+
+    		//push treenode's children nodes to queue waiting for go through;
+    		if(treenode.left) queue.push(treenode.left);
+    		if(treenode.right) queue.push(treenode.right);
+    	}
+    }
+    //log value
+    function logValue(node) {
+    	//only log node's value;
+    	console.log(node.value);
+    }
+    bst01.breadthFirstTraversal(logValue);
 	</script>
 </body>
 </html>
