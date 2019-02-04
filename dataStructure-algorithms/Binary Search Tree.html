@@ -129,7 +129,7 @@
     }
 
     //run it
-    bst01.depthFirstTraversal(log, 'post-order');
+   // bst01.depthFirstTraversal(log, 'post-order');
 
     //breadthFirstTraversal()
     BST.prototype.breadthFirstTraversal = function(iteratorFunc) {
@@ -152,7 +152,60 @@
     	//only log node's value;
     	console.log(node.value);
     }
-    bst01.breadthFirstTraversal(logValue);
+    //bst01.breadthFirstTraversal(logValue);
+
+
+    //get smallest value;
+    BST.prototype.getMinVal = function() {
+    	//store node value 
+    	let treenode = this;
+    	// go down the left side of the binary tree;
+    	while(treenode.left) {
+    		//update node
+    		treenode = treenode.left;
+    	}
+    	//when touch the bottom, return the value
+    	return treenode.value;
+    };
+
+    console.log(bst01.getMinVal());
+
+    //get largest value;
+    BST.prototype.getMaxVal = function() {
+    	//store node value;
+    	let treenode = this;
+    	//go all the way down the right side of the binary search tree
+    	while(treenode.right) {
+    	//update treenode in the loop
+        	treenode = treenode.right;
+        }
+    	//when touch the bottom, return the value
+    	return treenode.value;
+    }
+
+    console.log(bst01.getMaxVal());
+
+    //use recursion to complete getMinVal
+    BST.prototype.getMinValRecursion = function() {
+    	if(this.left) {
+    		return this.left.getMinValRecursion();
+    	}
+    	else {
+    		return this.value;
+    	}
+    }
+    console.log(`Min: ${bst01.getMinValRecursion()}`);
+
+    //use recursion to complete getMaxVal
+    BST.prototype.getMaxValRecursion = function() {
+    	if(this.right) {
+    		return this.right.getMaxValRecursion();
+    	}
+    	else {
+    		return this.value;
+    	}
+    }
+    console.log(`Max: ${bst01.getMaxValRecursion()}`);
 	</script>
 </body>
 </html>
