@@ -154,3 +154,36 @@ function factorial(num) {
 
 
 
+### Binary Search Tree 含有的几种必备方法
+
+Binary Search Tree (BST) 是一种树形的数据结构。一般包含几种必备的数据处理方式，包括：添加，查询，排序（按从小到大的顺序，先parent node 再child node, 先children nodes 再parent nodes），获取最小值和最大值。在每一种方法中基本都可以用到recursion来完成数据处理。
+
+
+
+#### BST的标准结构
+
+BST的标准结构为图下的树形，每一个分支上都含有一个父级node和两个子级node，左边小，右边大。
+
+![1549333818270](C:\Users\huangx\AppData\Roaming\Typora\typora-user-images\1549333818270.png)
+
+When initiates BST constructor, we need to include these three nodes as follow:
+
+​	
+
+```javascript
+function BST(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+}
+```
+
+
+
+#### 添加功能
+
+要将
+
+
+
+-++
