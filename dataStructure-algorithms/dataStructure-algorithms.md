@@ -162,7 +162,7 @@ Binary Search Tree (BST) 是一种树形的数据结构。一般包含几种必�
 
 #### BST的标准结构
 
-BST的标准结构为图下的树形，每一个分支上都含有一个父级node和两个子级node，左边小，右边大。
+BST的标准结构为图下的树形，每一个分支上都含有一个父级node和两个子级node，按照左边小，右边大的顺序排列：
 
 ![1549333818270](C:\Users\huangx\AppData\Roaming\Typora\typora-user-images\1549333818270.png)
 
@@ -182,8 +182,99 @@ function BST(value) {
 
 #### 添加功能
 
-要将
+将数字添加到BST上正确的位置。逻辑"
+
+1. 于root node进行比较，确认左右；
+2. 分别检测左右的node是否存在；
+3. 如果存在则recursion继续检测下一级；
+4. 一旦检测到不存在，进行添加。
 
 
 
--++
+```javascript
+/**
+ * insert() add a value into binary search tree
+ * @class BST
+ * @param number 
+ * @use recursion to compare with base value,
+    if left or right place already occupied,
+    continue going down until put it in the right place in line. 
+ * @return {value} as new BST(value);
+*/
+BST.prototype.insert = function(value) {
+    //compare with root node;
+    if(value < = this.value) {
+        //check if left value exists;
+        if(!this.left) {
+            //insert
+            return this.left = new BST(value);
+        }
+        //if yes, do recursion, continue going down;
+        else {
+            return this.left.insert(value);
+        }
+    }
+    else if(value > this.value) {
+        //if right value exists;
+        if(!this.right) {
+            return this.right = new BST(value);
+        }
+        //if yes, do recursion, continue going down;
+        else {
+            return this.right.insert(value);
+        }
+    }
+    
+}
+
+```
+
+
+
+#### 查询
+
+查询是否存在某个值：
+
+1. 是否等于root node；
+2. 如果不等于root node， 检测是大于或小于root node；
+3. 进入下一级后，检测下一级的root node是否存在，说明没有值了，返回false；
+4. 如果还有值，则recusion；检测对应root值是否与查询值相同，若相同则返回true；
+5. 最终可以通过这个recursion遍历所有node，得到查询结果
+
+```javascript
+/**
+*/
+
+BST.prototype.contains = function(value) {
+    //if equal to root node;
+    if(value === this.value){
+    	//yes, return true;
+    	return true;
+    }
+    //if not, compare with root node and then going down;
+    if(value < this.value){
+    	//test if left child node exists;
+    	if(!this.left) {
+    		//no, return false;
+        	return false;
+        }
+    	//yes, recursion to continue search;
+        else {
+            return this.left.contains(value);
+        }
+    }
+    	if(value > this.value) {
+    		//test if right child node exists;
+            if(!this.right) {
+                //no, return false;
+                return false
+            }
+     		//yes, recursion to continue search;
+            else {
+                return this.right.contains(value);
+            }
+    }
+    
+}
+```
+
