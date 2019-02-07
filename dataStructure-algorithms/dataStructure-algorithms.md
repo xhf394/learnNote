@@ -278,3 +278,53 @@ BST.prototype.contains = function(value) {
 }
 ```
 
+
+
+#### 排序
+
+
+
+##### 按顺序排序
+
+排序的基本思想，就是按顺序递归：parent node, left child, right child. 
+
+
+
+```javascript
+BST.prototype.depthFirstTraversal = function(iteratorFunc, order) {
+    //get parent node in "pre-order" order;
+    if(order === "pre-order") iteratorFunc(this.value);
+    //test if left value exsits;
+    if(this.left) this.left.depthFirstTraversal(iteratorFunc, order);
+    //get parent node in "in-order" order;
+    if(order === "in-order") iteratorFunc(this.value);
+    //continue track all the right value;
+    if(this.right) this.right.depthFirstTraversal(iteratorFunc, order);
+    //get left & right nodes before parent nodes;
+    if(order === "post-order") iteratorFunc(this.value);
+}
+
+//define iteratorFunc;
+function log(value) {
+    console.log(value);
+}
+
+```
+
+
+
+##### 切片式排序
+
+由于树形结构是一个父级下面两个子级，可以像切面包一样，一层一层像下导出值，就像应用在公司中的级别等级一样，等级至上而下，一层一层展示出来。
+
+
+
+```javascript
+BST.prototype.breadthFirstTraversal = function(iteratorFunc) {
+    //store nodes waiting for use;
+    
+}
+```
+
+
+
