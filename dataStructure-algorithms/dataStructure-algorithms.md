@@ -322,9 +322,61 @@ function log(value) {
 ```javascript
 BST.prototype.breadthFirstTraversal = function(iteratorFunc) {
     //store nodes waiting for use;
+    let queue = [this];
+    //loop binary search tree untill go through all nodes;
+    while(queue.length) {
+        //delete first node and store it for tracking it's children nodes;
+        let treenode = queue.shift();
+        //iterate treenode;
+        iteratorFunc(treenode);
+        //push treenode's children nodes to queue waiting for go through;
+        if(treenode.left) queue.push(treenode.left);
+        if(treenode.right) queue.push(treenode.right);
+    }
+   	
     
 }
 ```
 
 
+
+#### 获取最大值和最小值
+
+##### 获取最小值
+
+通过对BST进行一直向左的recursion，到底为止，则是最小值的地方。
+
+
+
+```javascript
+BST.prototype.getMinVal = function() {
+    if(this.left) {
+        return this.left.getMinValu();
+    } 
+    else {
+        return this.value;
+    }
+}
+```
+
+
+
+
+
+##### 获取最大值
+
+通过对BST进行一直向右的recursion，到底为止，则是最大值；
+
+
+
+```javascript
+BST.prototype.getMaxVal = function() {
+    if(this.right) {
+        return this.right.getMaxVal();
+    }
+    else {
+        return this.value;
+    }
+}
+```
 
