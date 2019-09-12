@@ -73,3 +73,61 @@ caesarCipher('Zoo Keeper', 2);
 1. cannot use forEach//for(let i of items), need to locate index of letter in str
 2. need to deal with:  [***a. num > 26; b. newIndex > 26; c. space ; d. upper case letter***]()
 
+#### Reversed Word
+
+```javascript
+function reverseWords(string){
+  //split string to words array
+  let wordsArr = string.split(' ');
+
+  //new array to store reversed words
+  let reversedWordsArr = [];
+
+  //loop each word, reversed
+  wordsArr.forEach( word => {
+    let reversedWord = '';
+    for( i = word.length - 1; i >=0; i-- ){
+      reversedWord += word[i];
+    }
+    reversedWordsArr.push(reversedWord);
+  })
+  //return 
+  return reversedWordsArr.join(' '); 
+}
+
+reverseWords('Coding JavaScript'); //gnidoC tpircSavaJ
+```
+
+1. as reversed. ***created reversed word array && reversed single word string***
+2. **loop word backwards**
+3. push into new array 
+
+#### Reverse Array In Place
+
+```javascript
+function reverseArrayInPlace(array) {
+  //loop whole array
+  for( let i = 0; i < array.length / 2; i++ ) {
+    //temporary store i
+    let tempItem = array[i];
+    //update i to array.length - 1
+    array[i] = array[array.length - 1 - i];
+    //update array.length - 1 to temporary item
+    array[array.length - 1 - i] = tempItem;
+  }
+  //return reversed array (update on the original one )
+  return array;
+}
+
+reverseArrayInPlace([1, 2, 3, 4, 5, 6, 7, 8]);
+```
+
+**Import Tips**
+
+1. make change based on original array; ==create a temporary store item==
+
+2.  ***==don't forget minus i==*** when get the index of the reverse target
+
+3. deal with the length of the loop
+
+   
