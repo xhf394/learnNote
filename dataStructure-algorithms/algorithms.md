@@ -201,3 +201,72 @@ meanMedianMode([9,10,23,10,23,9]);
 
 **Import Tips**
 
+- Median => consider : **==odd length ||even length==**;
+
+- getMode => 
+
+  1. hash table => calculate frequency;
+
+                        2. loop object keys of hash table ( with two var; maxFrequency[number] && mode [array]);
+     3. update maxFrequency &&mode when necessary(numMode = ***[num]*** as array;)
+     4. same frequency mode 
+
+
+
+#### Two Sum
+
+```javascript
+
+
+function twoSum(array, num) {
+  //returns every pair of num from array that adds up   to the 'sum'
+
+  //calculate frequency
+  let arrObj = {};
+  array.forEach( item => {
+    if(!arrObj[item]) arrObj[item] = 0;
+    arrObj[item]++
+  })
+
+  console.log(arrObj);
+  let arrPairs = [];
+  //go through hash table =>num&frequency
+  for(let item in arrObj){
+    //get target number
+    let targetNum = num - item;
+    //frequency minus one
+    if(arrObj[targetNum]) {
+      arrPairs.push([item, targetNum]);
+    //check frequency positive/negative
+      arrObj[item]--;
+    }
+    
+
+  }
+  console.log(arrPairs);
+}
+
+twoSum([1,6,4,5,3,3,3], 7);
+
+function twoSum(numArray, sum) {
+  //define pair
+  let pairs = [];
+  //hash table is used for calculate
+  let hashTable = [];
+
+  for(let i = 0; i < numArray.length; i++) {
+    //current number
+    let currentNum = numArray[i];
+    //target number
+    let targetNum = sum - currentNum;
+
+    if(hashTable.indexOf(targetNum) !== -1) pairs.push([currentNum, targetNum]);
+    //store
+    hashTable.push(currentNum);
+  }
+  return pairs
+}
+ 
+twoSum([1, 6, 4, 5, 3, 3, 3], 7);
+```
+
