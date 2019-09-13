@@ -125,9 +125,79 @@ reverseArrayInPlace([1, 2, 3, 4, 5, 6, 7, 8]);
 **Import Tips**
 
 1. make change based on original array; ==create a temporary store item==
-
 2.  ***==don't forget minus i==*** when get the index of the reverse target
-
 3. deal with the length of the loop
 
-   
+
+
+#### Mean, Median, Mode
+
+
+
+```javascript
+function getMean(array) {
+  let sum = 0;
+  for( let item of array ) {
+    sum += item;
+  }
+  return sum / array.length;
+}
+
+function getMedian(array) {
+  //sort array 
+  let sortArr = array.sort(function(a, b) { return a - b});
+  //get median number
+  let midIdx;
+  //odd length
+  if(array.length % 2 !== 0) {
+    midIdx = Math.floor(array.length / 2);
+    return sortArr[midIdx];
+  }
+  //even length
+  else {
+    let midIdx1 = array.length / 2 - 1;
+    let midIdx2 = array.length / 2;
+    return (sortArr[midIdx1] + sortArr[midIdx2]) /2;
+  }
+}
+
+function getMode(array) {
+  //calculate frequency
+  let numObj = {};
+  let numMode = [];
+
+  array.forEach( num => {
+    if(!numObj[num]) numObj[num] = 0;
+    numObj[num] ++
+  })
+
+  //deal with numObj, find out maxfrequency num
+  let maxFrequency = 0;
+  for( let num in numObj) {
+    if(numObj[num] > maxFrequency) {
+      numMode = [num];
+      maxFrequency = numObj[num];
+    }
+    else if(numObj[num] === maxFrequency) {
+      numMode.push(num);
+    }
+  }
+  //if all numbers are the same frequency
+  if(numMode.length === Object.keys(numObj).length) numMode = [];
+
+  return numMode; 
+
+}
+
+function meanMedianMode(array) {
+  return {
+    mean: getMean(array),
+    median: getMedian(array),
+    mode: getMode(array)
+  }
+}
+meanMedianMode([9,10,23,10,23,9]);
+```
+
+**Import Tips**
+
