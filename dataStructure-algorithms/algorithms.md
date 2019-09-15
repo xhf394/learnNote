@@ -270,3 +270,36 @@ function twoSum(numArray, sum) {
 twoSum([1, 6, 4, 5, 3, 3, 3], 7);
 ```
 
+```javascript
+
+```
+
+Binary Search Tree
+
+```javascript
+/**search for a value in array */
+function binarySearch(array, key) {
+  //get the middle index
+  let midIdx = Math.floor(array.length / 2);
+  //get the middle value
+  let midValue = array[midIdx];
+  //recursive base
+  if(midValue === key) return true;
+  //if middle value greater than key && array exists
+  else if(midValue < key && array.length > 1) {
+    return binarySearch(array.splice(midIdx, array.length), key);
+  }
+  //if middle value smaller than key
+  else if(midValue > key && array.length > 1) {
+    return binarySearch(array.splice(0, midIdx), key);
+  }
+  //not exist
+  else {
+    return false
+  }
+  //return true/false
+}
+
+binarySearch([5, 7, 12, 16, 36, 39, 42, 56, 71], 56);
+```
+
